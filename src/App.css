@@ -1,0 +1,14 @@
+.inputbox {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e8f0; /* Light border color */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px 12px; /* Padding for content */
+  background-color: #fff; /* White background */
+}
+
+/* Focus styles */
+.inputbox:focus-within {
+  border-color: #3b82f6; /* Blue border on focus */
+  box-shadow: 0 0 0 1px #3b82f6; /* Subtle blue outline */
+}
