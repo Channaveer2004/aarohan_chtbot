@@ -7,7 +7,7 @@ function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [generatingAnswer, setGeneratingAnswer] = useState(false);
-  const [history, setHistory] = useState([]); // Stores past prompts and answers
+  const [history, setHistory] = useState([]); 
 
   async function generateAnswer(e) {
     setGeneratingAnswer(true);
@@ -26,7 +26,7 @@ function App() {
 
       const generatedAnswer = response.data.candidates[0].content.parts[0].text;
       setAnswer(generatedAnswer);
-      setHistory([...history, { question, answer: generatedAnswer }]); // Store prompt and answer together
+      setHistory([...history, { question, answer: generatedAnswer }]); 
     } catch (error) {
       console.log(error);
       setAnswer("Sorry - Something went wrong. Please try again!");
