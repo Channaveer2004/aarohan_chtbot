@@ -35,6 +35,13 @@ function App() {
     setGeneratingAnswer(false);
   }
 
+  // const handleKeyDown = (e) => {
+  //   if (e.key === 'Enter' && !e.shiftKey) {
+  //     e.preventDefault(); // Prevents the default new line behavior in textarea
+  //     generateAnswer(e);
+  //   }
+  // };
+
   return (
     <>
       <div className="flex flex-col min-h-screen bg-gray-900 text-white">
@@ -42,9 +49,9 @@ function App() {
           <a
             href=""
             target="_blank"
-            className="text-2xl font-semibold text-white"
+            className="header"
           >
-            Chat AI
+            ISE CHAT AI
           </a>
         </header>
         <main className="flex flex-col items-center justify-center py-8 px-4 space-y-8">
@@ -54,10 +61,12 @@ function App() {
               className="w-full rounded-md border border-gray-600 bg-gray-800 p-3 focus:border-blue-500 focus:outline-none text-base text-white"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
+              
               placeholder="Ask anything..."
             ></textarea>
             <button
               type="submit"
+              // onKeyDown={handleKeyDown}
               className="mt-4 block w-full rounded-md bg-blue-600 py-2 px-4 text-center text-white font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed"
               disabled={generatingAnswer}
             >
@@ -66,6 +75,17 @@ function App() {
           </form>
 
           <div className="w-full max-w-2xl rounded-md bg-gray-800 p-4 shadow-md overflow-auto">
+          {answer && (
+              <div className="flex flex-col mb-4 border-b border-gray-700 pb-4">
+                <p className="text-base font-medium text-gray-400">
+                  Prompt: {question}
+                </p>
+                <ReactMarkdown className="mt-2 text-base text-gray-300">
+                  {answer}
+                </ReactMarkdown>
+              </div>
+            )}
+
             {history.length > 0 && (
               <h2 className="text-lg font-medium text-gray-300 mb-4">
                 Previous Conversations
@@ -79,21 +99,12 @@ function App() {
                 <p className="text-base font-medium text-gray-400">
                   Prompt: {item.question}
                 </p>
-                <ReactMarkdown className="mt-2 text-base text-gray-300">
+                <ReactMarkdown className="answer">
                   {item.answer}
                 </ReactMarkdown>
               </div>
             ))}
-            {answer && (
-              <div className="flex flex-col mb-4 border-b border-gray-700 pb-4">
-                <p className="text-base font-medium text-gray-400">
-                  Prompt: {question}
-                </p>
-                <ReactMarkdown className="mt-2 text-base text-gray-300">
-                  {answer}
-                </ReactMarkdown>
-              </div>
-            )}
+            
           </div>
         </main>
       </div>
